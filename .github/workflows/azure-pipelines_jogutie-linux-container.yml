@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://mcr.microsoft.com/
-        username: ${{ secrets.AzureAppService_ContainerUsername_80b182520de746b19a968e9fe186e388 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_8ff44be0f1b443459e46f708085c64ad }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_3e2467c592864b5da9556225a3b404ed }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_503f6d683121426f9f1bd25dbac7973f }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_80b182520de746b19a968e9fe186e388 }}/appsvc/staticsite:${{ github.sha }}
+        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_3e2467c592864b5da9556225a3b404ed }}/appsvc/staticsite:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'jogutie-linux-container'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_bfb3e41dbfc54ac48faa8a73306fc512 }}
-        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_80b182520de746b19a968e9fe186e388 }}/appsvc/staticsite:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_cf02c21613ee465fbc9188b9bf4fadbe }}
+        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_3e2467c592864b5da9556225a3b404ed }}/appsvc/staticsite:${{ github.sha }}'
